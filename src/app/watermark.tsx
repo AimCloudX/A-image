@@ -239,7 +239,7 @@ export function Watermark({ file }: { file: File }) {
             <div>Y</div>
             <div>Font Size</div>
             <div>Opacity</div>
-            <div colSpan={2}>Color</div>
+            <div>Color</div>
           </div>
           {watermarks.map((watermark) => (
             <div key={watermark.id} className={`grid grid-cols-7 gap-2 mb-2 ${watermark.id === selectedWatermark ? 'bg-red-100' : ''}`}>
