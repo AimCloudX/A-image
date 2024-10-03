@@ -17,10 +17,16 @@ export default function Dashboard() {
   const [files, setFiles] = useState<File[]>([])
   const [selectedService, setSelectedService] = useState<string | null>(null)
   const { toast } = useToast()
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null) // プレビュー用のURL
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFiles(Array.from(e.target.files))
+if (e.target.files && e.target.files.length > 0) {
+      const selectedFiles = Array.from(e.target.files)
+      setFiles(selectedFiles)
+       // 画像のプレビューURLを作成
+      const preview = URL.createObjectURL(selectedFiles[0])
+      setPreviewUrl(preview)
+
       toast({
         title: "ファイルがアップロードされました",
         description: `${e.target.files.length}個のファイルが選択されました。`,
@@ -65,8 +71,10 @@ export default function Dashboard() {
               </div>
               <Input id="picture" type="file" multiple className="sr-only" onChange={handleFileChange} />
             </Label>
-            {files.length > 0 && (
-              <p className="mt-2 text-sm text-gray-600">{files.length}個のファイルが選択されました</p>
+                      {previewUrl && (
+                          <div style={{ marginTop: "20px" }}>
+                              <img src={previewUrl} alt="Preview" style={{ maxWidth: "100%", height: "auto" }} />
+                          </div>
             )}
           </CardContent>
         </Card>
