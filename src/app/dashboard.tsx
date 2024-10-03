@@ -36,7 +36,6 @@ if (e.target.files && e.target.files.length > 0) {
 
   const services = [
     { name: "フォーマット変換", icon: <Image className="w-6 h-6" />, component: FormatConversion },
-    // { name: "バッチ変換", icon: <Layers className="w-6 h-6" /> },
     { name: "圧縮・最適化", icon: <Zap className="w-6 h-6" />, component: ImageCompression },
     // { name: "フィルター追加", icon: <Image className="w-6 h-6" /> },
     { name: "透かし追加", icon: <Stamp className="w-6 h-6" />, component: Watermark },
