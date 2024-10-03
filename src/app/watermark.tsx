@@ -97,17 +97,24 @@ export function Watermark({ file }: { file: File }) {
     setWatermarks([...watermarks, newWatermark]);
   };
 
-  const updateWatermark = (id: string, field: keyof Watermark, value: string | number) => {
+const updateWatermark = (id: string, field: keyof Watermark, value: string | number) => {
     setWatermarks(watermarks.map(w => 
       w.id === id ? { ...w, [field]: value } : w
     ));
+  };
+    const handleColorChange = (id: string, value: string) => {
+    // Ensure the value is a valid hex color
+    const hexColor = value.startsWith('#') ? value : `#${value}`;
+    if (/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
+      updateWatermark(id, 'color', hexColor);
+    }
   };
 
   const removeWatermark = (id: string) => {
     setWatermarks(watermarks.filter(w => w.id !== id));
   };
 
-  return (
+return (
     <div className="space-y-4">
       <Card>
         <CardHeader>
@@ -120,8 +127,7 @@ export function Watermark({ file }: { file: File }) {
             <div>Y</div>
             <div>Font Size</div>
             <div>Opacity</div>
-            <div>Color</div>
-            <div>Action</div>
+            <div colSpan={2}>Color</div>
           </div>
           {watermarks.map((watermark, index) => (
             <div key={watermark.id} className="grid grid-cols-7 gap-2 mb-2">
@@ -157,11 +163,21 @@ export function Watermark({ file }: { file: File }) {
                 max="1"
                 step="0.1"
               />
-              <Input
-                type="color"
-                value={watermark.color}
-                onChange={(e) => updateWatermark(watermark.id, 'color', e.target.value)}
-              />
+              <div className="flex items-center space-x-2">
+                <Input
+                  type="color"
+                  value={watermark.color}
+                  onChange={(e) => updateWatermark(watermark.id, 'color', e.target.value)}
+                  className="w-10 h-10 p-0 border-0"
+                />
+                <Input
+                  type="text"
+                  value={watermark.color}
+                  onChange={(e) => handleColorChange(watermark.id, e.target.value)}
+                  placeholder="#FFFFFF"
+                  className="flex-grow"
+                />
+              </div>
               <Button
                 variant="ghost"
                 size="icon"
