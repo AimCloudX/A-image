@@ -7,10 +7,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useToast } from "@/hooks/use-toast"
-import { Upload, Image, Layers, Zap, Stamp, Clapperboard, Eraser, Crop } from "lucide-react"
+import { Upload, Image, Layers, Zap, Stamp, Clapperboard, Eraser, Crop, PenTool } from "lucide-react"
 import { FormatConversion } from "./format-conversion"
 import { ImageCompression } from "./image-compression"
 import { Watermark } from "./watermark"
+import { FaviconGenerator } from "./faviconGenerator"
 import { ImageCropping } from "./image-cropping"
 
 export default function Dashboard() {
@@ -42,6 +43,7 @@ if (e.target.files && e.target.files.length > 0) {
     // { name: "GIF作成", icon: <Clapperboard className="w-6 h-6" /> },
     // { name: "モザイク処理", icon: <Eraser className="w-6 h-6" /> },
     { name: "トリミング", icon: <Crop className="w-6 h-6" />, component: ImageCropping },
+    { name: "アイコンメーカー", icon: <PenTool className="w-6 h-6" />, component: FaviconGenerator },
   ]
 
   const renderSelectedService = () => {
