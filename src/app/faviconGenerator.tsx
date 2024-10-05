@@ -81,8 +81,7 @@ export function FaviconGenerator({ file }:{file:File}) {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    let dataUrl: string
-    dataUrl = canvas.toDataURL(`image/${fileType}`)
+    const dataUrl = canvas.toDataURL(`image/${fileType}`)
 
     const link = document.createElement('a')
     link.download = fileName || `icon.${fileType}`
