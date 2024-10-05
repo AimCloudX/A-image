@@ -196,7 +196,7 @@ export function FaviconGenerator({ file }:{file:File}) {
               onChange={(e) => setFileName(e.target.value)}
             />
           </div>
-          <Select value={fileType} onValueChange={(value: 'png' | 'ico' | 'svg') => setFileType(value)}>
+          <Select value={fileType} onValueChange={(value: 'png' | 'ico' ) => setFileType(value)}>
             <SelectTrigger>
               <SelectValue placeholder="ファイル形式を選択" />
             </SelectTrigger>
